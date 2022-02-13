@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useGoogleLogin from '../hooks/useGoogleLogin';
 import useLogin from '../hooks/useLogin';
 import LoginTemplate from '../templates/LoginTemplate';
 
@@ -18,8 +19,10 @@ const LoginPage = () => {
 
   const login = useLogin(id, pw);
 
+  const googleLogin = useGoogleLogin();
+
   return (
-    <LoginTemplate id={id} pw={pw} idHandler={idHandler} pwHandler={pwHandler} login={login} />
+    <LoginTemplate id={id} pw={pw} idHandler={idHandler} pwHandler={pwHandler} login={login} googleLogin={googleLogin} />
   );
 };
 

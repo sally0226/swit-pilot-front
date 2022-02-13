@@ -4,7 +4,7 @@ import { LoginInput, Logo, SNSLoginButton } from '../../components/Login';
 import LoginButton from '../../components/Login/LoginButton';
 import { ButtonContainer, Container, InputContainer, Layout, Line } from './style';
 
-const LoginTemplate = ({ id, pw, idHandler, pwHandler, login }) => {
+const LoginTemplate = ({ id, pw, idHandler, pwHandler, login, googleLogin }) => {
   return (
     <Layout>
       <Container>
@@ -20,7 +20,7 @@ const LoginTemplate = ({ id, pw, idHandler, pwHandler, login }) => {
             <LoginButton text='Signup' />
           </Link>
         </ButtonContainer>
-        <SNSLoginButton />
+        <SNSLoginButton onClick={googleLogin} />
       </Container>
     </Layout>
   );
