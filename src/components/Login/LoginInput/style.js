@@ -7,10 +7,22 @@ export const Wrapper = styled.div`
 `;
 
 export const Input = styled.input`
-  width: calc(100% - 3rem);
-  border: 1px solid #a1a1a1;
-  border-radius: 0.2rem;
+  width: 7rem;
+  border: none;
+	box-shadow: 0px 1px 0px 0px #666;
   height: 1.5rem;
+  
+  &::placeholder {
+		color: #777777;
+	}
+
+	&:focus-visible {
+		outline: none;
+    width: calc(100% - 3rem);
+		box-shadow: 0px 2px 0px 0px #888888;
+	}
+
+  transition: width 0.3s ease-in-out;
 `;
 
 export const Label = styled.span`
