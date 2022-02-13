@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LoginInput, Logo, SNSLoginButton } from '../../components/Login';
 import LoginButton from '../../components/Login/LoginButton';
 import { ButtonContainer, Container, InputContainer, Layout, Line } from './style';
@@ -15,7 +16,9 @@ const LoginTemplate = ({ id, pw, idHandler, pwHandler, login }) => {
         <Line />
         <ButtonContainer>
           <LoginButton text='Login' onClick={login} />
-          <LoginButton text='Signup' />
+          <Link to='/signup'>
+            <LoginButton text='Signup' />
+          </Link>
         </ButtonContainer>
         <SNSLoginButton />
       </Container>
