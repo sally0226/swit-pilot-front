@@ -6,7 +6,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route ypath='/' element={<LoginPage />} />
+        <Route path='/' element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
