@@ -12,13 +12,13 @@ export const Wrapper = styled.div`
     width: 1.2rem;
     height: 1.2rem;
   }
-  border: 1px solid #a1a1a1;
+  border: 1px solid #ff505f;
   border-radius: 0.5rem;
   font-size: 1.1rem;
   cursor: pointer;
 
   &:hover {
-    background-color: #dfdfdf;
+    background-color: #efefef;
   }
 
   &:active {

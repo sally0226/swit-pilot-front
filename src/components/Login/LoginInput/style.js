@@ -19,10 +19,10 @@ export const Input = styled.input`
 	&:focus-visible {
 		outline: none;
     width: calc(100% - 3rem);
-		box-shadow: 0px 2px 0px 0px #888888;
+		box-shadow: 0px 2px 0px 0px #ff505f;
 	}
 
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 `;
 
 export const Label = styled.span`

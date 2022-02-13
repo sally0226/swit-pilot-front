@@ -16,7 +16,7 @@ export const Container = styled.div`
   height: 23rem;
   padding: 2rem 1rem;
   background-color: #ffffff;
-  border: 1px solid #a1a1a1;
+  border: 1px solid #ff505f;
   border-radius: 1rem;
   justify-content: space-around;
   align-items: center;
@@ -41,8 +41,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Line = styled.div`
-  width: 80%;
+  width: 60%;
   height: 2px;
-  background-color: #cdcdcd;
+  background-color: #dfdfdf;
   margin: 1rem 0;
 `;
