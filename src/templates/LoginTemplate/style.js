@@ -14,7 +14,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: 18rem;
   height: 23rem;
-  padding: 2rem 1rem;
+  padding: 4rem 3rem;
   background-color: #ffffff;
   border: 1px solid #ff505f;
   border-radius: 1rem;
