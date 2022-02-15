@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from './Profile';
+import Profile from '../../Profile';
 import SenderInfo from './SenderInfo';
 import { Container, Contents, Wrapper } from './style';
 
