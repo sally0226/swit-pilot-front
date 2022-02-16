@@ -8,6 +8,7 @@ function App() {
       <ResetStyle />
       <RecoilRoot>
         <Router />
+        <div id='root-modal' />
       </RecoilRoot>
     </>
   );
