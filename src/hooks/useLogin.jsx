@@ -22,6 +22,7 @@ const useLogin = (id, pw) => {
       console.log('로그인 성공');
     }
     */
+    navigate('/main');
   }
 
   return () => {
