@@ -7,4 +7,17 @@ export const Container = styled.div`
   height: 100%;
   overflow-y: scroll;
   background-color: #F6F8FA;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888888;
+    border-radius: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
 `;
