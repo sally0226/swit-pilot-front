@@ -4,12 +4,12 @@ import ChatRoom from '../../components/ChatRoom';
 import Header from '../../components/Header';
 import { Container, Layout } from './style';
 
-const MainTemplate = ({ channels, channel, messages, lastMessageRef }) => {
+const MainTemplate = ({ channels, channel, messages, lastMessageRef, modalController }) => {
   return (
     <Layout>
       <Header />
       <Container>
-        <Channels channels={channels} current={channel.channelId} />
+        <Channels channels={channels} current={channel.channelId} modalController={modalController} />
         <ChatRoom name={channel.channelName} peopleNum={3} messages={messages} lastMessageRef={lastMessageRef} />
       </Container>
     </Layout>

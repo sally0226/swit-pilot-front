@@ -2,9 +2,6 @@ import React from 'react';
 import Message from '../Message';
 import { Container } from './style';
 
-
-
-
 const ChatBoard = ({ messages, lastMessageRef }) => {
   return (
     <Container>
