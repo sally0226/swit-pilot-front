@@ -11,7 +11,7 @@ const Channels = ({ channels, current }) => {
           <img src='/img/plus.svg' alt='plus-icon' />
         </Button>
       </Wrapper>
-      { channels.map((channel) => <Channel key={channel.id} name={channel.name} isHere={channel.id === current} />) }
+      { channels.map((channel) => <Channel key={channel.channelId} id={channel.channelId} name={channel.channelName} isHere={channel.channelId === current} />) }
     </Container>
   );
 };

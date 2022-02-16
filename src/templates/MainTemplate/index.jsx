@@ -4,13 +4,13 @@ import ChatRoom from '../../components/ChatRoom';
 import Header from '../../components/Header';
 import { Container, Layout } from './style';
 
-const MainTemplate = ({ channels, messages, lastMessageRef }) => {
+const MainTemplate = ({ channels, channel, messages, lastMessageRef }) => {
   return (
     <Layout>
       <Header />
       <Container>
-        <Channels channels={channels} current={1} />
-        <ChatRoom name={'Backend'} peopleNum={3} messages={messages} lastMessageRef={lastMessageRef} />
+        <Channels channels={channels} current={channel.channelId} />
+        <ChatRoom name={channel.channelName} peopleNum={3} messages={messages} lastMessageRef={lastMessageRef} />
       </Container>
     </Layout>
   );

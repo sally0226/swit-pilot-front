@@ -12,4 +12,6 @@ export const Wrapper = styled.div`
   &:hover {
     background-color: ${(props) => props.isHere ? '#E6E6E8' : '#F5F5F3'};
   }
+
+  cursor: pointer;
 `;
