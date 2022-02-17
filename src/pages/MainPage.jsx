@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import ModalPortal from '../components/Modal';
 import useGetChannelList from '../hooks/useGetChannelList';
-import { currentChannelState, messageState } from '../stores/channel';
+import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
 
 const MainPage = () => {
@@ -11,6 +11,7 @@ const MainPage = () => {
   const channels = useGetChannelList();
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const messages = useRecoilValue(messageState);
+  const people = useRecoilValue(channelPeopleListState);
 
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
@@ -36,7 +37,14 @@ const MainPage = () => {
 
   return (
     <>
-      <MainTemplate channels={channels} channel={currentChannelInfo} messages={messages} lastMessageRef={lastMessageRef} modalController={modalController} />
+      <MainTemplate
+        channels={channels}
+        channel={currentChannelInfo}
+        messages={messages}
+        people={people}
+        lastMessageRef={lastMessageRef}
+        modalController={modalController}
+      />
       {
         showSearchChannelModal &&
         <ModalPortal

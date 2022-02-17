@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { channelListState, currentChannelState, messageState } from '../stores/channel';
+import { channelListState, channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 
@@ -22,11 +22,31 @@ const chat_dummy = {
   '3': []
 };
 
+const people_dummy = {
+  '1': [
+    { id: '123@gmail.com', name: 'LeeMir' },
+    { id: 'alpha@gmail.com', name: 'Alpha' },
+    { id: 'bravo@gmail.com', name: 'Bravo' },
+    { id: 'charlie@gmail.com', name: 'Charlie' },
+    { id: 'delta@gmail.com', name: 'Delta' },
+    { id: 'echo@gmail.com', name: 'Echo' },
+    { id: 'foxtrot@gmail.com', name: 'Foxtrot' },
+  ],
+  '2': [
+    { id: '123@gmail.com', name: 'LeeMir' },
+    { id: 'hi@gmail.com', name: 'Hi' },
+  ],
+  '3': [
+    { id: '123@gmail.com', name: 'LeeMir' },
+  ],
+};
+
 const useMoveChannel = () => {
   const user = useRecoilValue(userState);
   const [channel, setChannel] = useRecoilState(currentChannelState);
   const channelList = useRecoilValue(channelListState);
   const setMessageList = useSetRecoilState(messageState);
+  const setChannelPeopleList = useSetRecoilState(channelPeopleListState);
 
   const getChannelInfo = async (channelId) => {
     const temp = { ...channel };
@@ -41,9 +61,11 @@ const useMoveChannel = () => {
     temp.channelId = channelId;
     temp.channelName = channelList.find(channel => channel.channelId === channelId).channelName;
     const messages = chat_dummy[`${channelId}`];
-    
+    const people = people_dummy[`${channelId}`];
+
     setChannel(temp);
     setMessageList(messages);
+    setChannelPeopleList(people);
   }
 
   return (channelId) => {

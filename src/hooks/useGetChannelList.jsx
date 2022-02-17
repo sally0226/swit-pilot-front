@@ -6,9 +6,9 @@ import fetchApi from '../utils/fetch';
 import useMoveChannel from './useMoveChannel';
 
 const channel_dummy = [
-  { channelId: '1', channelName: 'Backend' },
-  { channelId: '2', channelName: 'Frontend' },
-  { channelId: '3', channelName: 'General' },
+  { channelId: '1', channelName: 'Backend', ownerEmail: '123@gmail.com' },
+  { channelId: '2', channelName: 'Frontend', ownerEmail: '123@gmail.com' },
+  { channelId: '3', channelName: 'General', ownerEmail: '123@gmail.com' },
 ];
 
 const useGetChannelList = () => {
