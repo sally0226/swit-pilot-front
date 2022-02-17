@@ -1,0 +1,31 @@
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const Input = styled.input`
+  width: calc(100% - 3rem);
+  border: none;
+	box-shadow: 0px 1px 0px 0px #666;
+  height: 1.5rem;
+  
+  &::placeholder {
+		color: #777777;
+	}
+
+	&:focus-visible {
+		outline: none;
+    box-shadow: 0px 1px 0px 0px #ff505f;
+	}
+
+  transition: all 0.3s ease-in-out;
+`;
+
+export const Label = styled.span`
+  width: 8rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+`;
