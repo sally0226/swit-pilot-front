@@ -3,11 +3,11 @@ import { useSetRecoilState } from 'recoil';
 import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 
-const useLogin = (id, pw) => {
+const useLogin = () => {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
 
-  const login = async () => {
+  const login = async (id, pw) => {
     console.log(id, pw);
     /*
     const res = await fetchApi.post('/api/v1/login', { id, pw });
@@ -25,8 +25,8 @@ const useLogin = (id, pw) => {
     navigate('/main');
   }
 
-  return () => {
-    login();
+  return (id, pw) => {
+    login(id, pw);
   };
 };
 

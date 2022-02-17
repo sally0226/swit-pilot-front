@@ -17,12 +17,16 @@ const LoginPage = () => {
     setPw(value);
   };
 
-  const login = useLogin(id, pw);
+  const login = useLogin();
+
+  const loginHandler = () => {
+    login(id, pw);
+  };
 
   const googleLogin = useGoogleLogin();
 
   return (
-    <LoginTemplate id={id} pw={pw} idHandler={idHandler} pwHandler={pwHandler} login={login} googleLogin={googleLogin} />
+    <LoginTemplate id={id} pw={pw} idHandler={idHandler} pwHandler={pwHandler} login={loginHandler} googleLogin={googleLogin} />
   );
 };
 
