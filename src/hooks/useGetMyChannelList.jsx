@@ -11,7 +11,7 @@ const channel_dummy = [
   { channelId: '3', channelName: 'General', ownerEmail: '123@gmail.com' },
 ];
 
-const useGetChannelList = () => {
+const useGetMyChannelList = () => {
   const [channelList, setChannelList] = useRecoilState(channelListState);
   const user = useRecoilValue(userState);
   const moveChannel = useMoveChannel();
@@ -42,4 +42,4 @@ const useGetChannelList = () => {
   return channelList;
 };
 
-export default useGetChannelList;
+export default useGetMyChannelList;

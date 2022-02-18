@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Channel from './Channel';
+import MyChannel from './MyChannel';
 import ChannelModal from './ChannelModal';
 import { Button, Container, Title, Wrapper } from './style';
 
-const Channels = ({ channels, current, modalController }) => {
+const Channels = ({ myChannels, current, modalController }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -16,7 +16,7 @@ const Channels = ({ channels, current, modalController }) => {
         </Button>
         { showModal && <ChannelModal closeModal={closeModal} modalController={modalController} /> }
       </Wrapper>
-      { channels.map((channel) => <Channel key={channel.channelId} id={channel.channelId} name={channel.channelName} isHere={channel.channelId === current} />) }
+      { myChannels.map((myChannel) => <MyChannel key={myChannel.channelId} id={myChannel.channelId} name={myChannel.channelName} isHere={myChannel.channelId === current} />) }
     </Container>
   );
 };

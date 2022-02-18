@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import ModalPortal from '../components/Modal';
-import useGetChannelList from '../hooks/useGetChannelList';
+import useGetMyChannelList from '../hooks/useGetMyChannelList';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
 
 const MainPage = () => {
   const lastMessageRef = useRef();
   const scrollToBottom = () => lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
-  const channels = useGetChannelList();
+  const myChannels = useGetMyChannelList();
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const messages = useRecoilValue(messageState);
   const people = useRecoilValue(channelPeopleListState);
@@ -38,7 +38,7 @@ const MainPage = () => {
   return (
     <>
       <MainTemplate
-        channels={channels}
+        myChannels={myChannels}
         channel={currentChannelInfo}
         messages={messages}
         people={people}

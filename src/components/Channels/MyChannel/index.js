@@ -2,7 +2,7 @@ import React from 'react';
 import useMoveChannel from '../../../hooks/useMoveChannel';
 import { Wrapper } from './style';
 
-const Channel = ({ id, name, isHere }) => {
+const MyChannel = ({ id, name, isHere }) => {
   const moveChannel = useMoveChannel();
   const clickHandler = () => {
     moveChannel(id);
@@ -14,4 +14,4 @@ const Channel = ({ id, name, isHere }) => {
   );
 };
 
-export default Channel;
+export default MyChannel;
