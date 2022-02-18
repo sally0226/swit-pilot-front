@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import SearchChannel from '../components/Channels/SearchChannel';
 import ModalPortal from '../components/Modal';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
@@ -51,7 +52,7 @@ const MainPage = () => {
           title='채널 탐색'
           closePortal={modalController.closeSearchChannelModal}
         >
-          <span>SearchChannelModal</span>
+          <SearchChannel />
         </ModalPortal>}
       {
         showCreateChannelModal &&
