@@ -18,7 +18,7 @@ export const Content = styled.div`
   width: 30%;
   max-height: 70%;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   z-index: 1;
   background: #FFFFFF;
 `;
