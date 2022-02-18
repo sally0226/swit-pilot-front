@@ -7,7 +7,6 @@ import { Wrapper } from './style';
 
 const Header = () => {
   const user = useRecoilValue(userState);
-  console.log(user)
   return (
     <Wrapper>
       <Link to='/'>
