@@ -1,11 +1,22 @@
 const baseUrl = 'http://localhost:8081';
 
+const header = {
+	'Content-Type': 'application/json',
+	Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+};
+
+const getHeader = () => {
+	header.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+	return header;
+};
+
 const fetchApi = {
 	get: (path) =>
 		fetch(`${baseUrl}${path}`, {
 			method: 'GET',
 			mode: 'cors',
-			credentials: 'include'
+			credentials: 'include',
+			headers: getHeader(),
 		}),
 
 	post: (path, data) =>
@@ -14,6 +25,7 @@ const fetchApi = {
 			mode: 'cors',
 			credentials: 'include',
 			body: JSON.stringify(data),
+			headers: getHeader(),
 		}),
 
 	put: (path, data) =>
@@ -22,6 +34,7 @@ const fetchApi = {
 			mode: 'cors',
 			credentials: 'include',
 			body: JSON.stringify(data),
+			headers: getHeader(),
 		}),
 
 	patch: (path, data) =>
@@ -30,6 +43,7 @@ const fetchApi = {
 			mode: 'cors',
 			credentials: 'include',
 			body: JSON.stringify(data),
+			headers: getHeader(),
 		}),
 
 	delete: (path, data) =>
@@ -38,6 +52,7 @@ const fetchApi = {
 			mode: 'cors',
 			credentials: 'include',
 			body: JSON.stringify(data),
+			headers: getHeader(),
 		}),
 };
 
