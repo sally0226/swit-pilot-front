@@ -3,21 +3,21 @@ import useLogin from './useLogin';
 
 const useSignup = () => {
   const login = useLogin();
-  const signup = async (id, pw, name) => {
-    console.log(id, pw, name);
-    /*
-    const res = await fetchApi.post('/api/v1/signup', { id, pw, name });
-    if (res.status === 201) {
+  const signup = async (userEmail, password, userName) => {
+    console.log(userEmail, password, userName);
+  
+    const res = await fetchApi.post('/api/v1/signup', { userEmail, password, userName });
+    if (res.status === 200) {
       // 회원가입 성공 시
       // 바로 로그인
-      console.log('로그인 성공');
+      console.log('회원가입 성공');
     }
-    */
-    login(id, pw);
+  
+    login(userEmail, password);
   }
 
-  return (id, pw, name) => {
-    signup(id, pw, name);
+  return (userEmail, password, userName) => {
+    signup(userEmail, password, userName);
   };
 };
 
