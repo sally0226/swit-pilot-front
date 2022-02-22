@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wrapper } from './style';
 
-const Profile = ({ user_name, size=3 }) => {
+const ProfileIcon = ({ user_name, size=3 }) => {
   const firstWord = user_name[0];
   const colorOp = user_name.length % 8;
   return (
@@ -9,4 +9,4 @@ const Profile = ({ user_name, size=3 }) => {
   );
 };
 
-export default Profile;
+export default ProfileIcon;
