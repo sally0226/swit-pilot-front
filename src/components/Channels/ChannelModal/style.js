@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: absolute;
   justify-self: baseline;
   left: 20%;
-  top: 5rem;
+  top: calc(5rem + 20%);
   background-color: #FFFFFF;
   width: 15%;
   border: 1px solid #E6E6E8;

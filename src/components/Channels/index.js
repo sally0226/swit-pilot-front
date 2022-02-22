@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MyChannel from './MyChannel';
 import ChannelModal from './ChannelModal';
 import { Button, Container, Title, Wrapper } from './style';
+import ProfileCard from './ProfileCard';
 
 const Channels = ({ myChannels, current, modalController }) => {
   const [showModal, setShowModal] = useState(false);
@@ -9,6 +10,7 @@ const Channels = ({ myChannels, current, modalController }) => {
   const closeModal = () => setShowModal(false);
   return (
     <Container>
+      <ProfileCard />
       <Wrapper>
         <Title>Channels</Title>
         <Button onClick={openModal}>
