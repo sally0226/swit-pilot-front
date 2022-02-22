@@ -1,8 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Background, Button, Container, Content, Header, Title } from './style';
+import { Background, Button, ButtonContainer, CloseButton, Container, Content, Header, Title } from './style';
 
-const ModalPortal = ({ children, title, closePortal }) => {
+const ModalPortal = ({
+  children,
+  title,
+  closePortal,
+  showSubmitBtn = false,
+  submit,
+  submitBtnName = '생성'
+}) => {
   const ref = useRef();
   const [mounted, setMounted] = useState(false);
 
@@ -21,11 +28,18 @@ const ModalPortal = ({ children, title, closePortal }) => {
         <Content>
           <Header>
             <Title>{title}</Title>
-            <Button onClick={closePortal}>
+            <CloseButton onClick={closePortal}>
               <img src='/img/cancel.svg' alt='close-icon' />
-            </Button>
+            </CloseButton>
           </Header>
           {children}
+          {
+            showSubmitBtn &&
+            <ButtonContainer>
+              <Button onClick={closePortal}>취소</Button>
+              <Button onClick={submit}>{submitBtnName}</Button>
+            </ButtonContainer>
+          }
         </Content>
       </Container>,
       ref.current

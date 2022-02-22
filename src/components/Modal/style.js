@@ -35,7 +35,7 @@ export const Title = styled.span`
   font-size: 1.5rem;
 `;
 
-export const Button = styled.button`
+export const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,6 +54,30 @@ export const Button = styled.button`
 
   &:hover {
     opacity: 1.0;
+    background-color: #EDEDED;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E6E6E8;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  width: 5rem;
+  height: 2rem;
+  cursor: pointer;
+
+  &:hover {
     background-color: #EDEDED;
   }
 `;
