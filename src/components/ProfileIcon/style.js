@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
   min-width: ${(props) => `${props.size}rem`};
   max-width: ${(props) => `${props.size}rem`};
   height: ${(props) => `${props.size}rem`};
+  min-height: ${(props) => `${props.size}rem`};
+  max-height: ${(props) => `${props.size}rem`};
   background-color: ${(props) => COLOR[props.color]};
   color: ${(props) => props.color > 4 ? '#FFFFFF' : '#000000'};
 `;
