@@ -14,6 +14,7 @@ const MainPage = () => {
   const messages = useRecoilValue(messageState);
   const people = useRecoilValue(channelPeopleListState);
 
+  const [showUserList, setShowUserList] = useState(false);
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
 
@@ -24,13 +25,22 @@ const MainPage = () => {
     openCreateChannelModal: () => {
       setShowCreateChannelModal(true);
     },
+    
     closeSearchChannelModal: () => {
       setShowSearchChannelModal(false);
     },
     closeCreateChannelModal: () => {
       setShowCreateChannelModal(false);
-    }
+    },
   }
+
+  const toggleUserList = () => {
+    setShowUserList(!showUserList);
+  };
+
+  const closeUserList = () => {
+    setShowUserList(false);
+  };
 
   useEffect(() => {
     scrollToBottom();
@@ -44,6 +54,9 @@ const MainPage = () => {
         messages={messages}
         people={people}
         lastMessageRef={lastMessageRef}
+        showUserList={showUserList}
+        toggleUserList={toggleUserList}
+        closeUserList={closeUserList}
         modalController={modalController}
       />
       {

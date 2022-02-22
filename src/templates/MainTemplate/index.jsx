@@ -10,6 +10,9 @@ const MainTemplate = ({
   messages,
   people,
   lastMessageRef,
+  showUserList,
+  toggleUserList,
+  closeUserList,
   modalController
 }) => {
   return (
@@ -23,9 +26,12 @@ const MainTemplate = ({
         />
         <ChatRoom
           name={channel.channelName}
-          peopleNum={people.length}
+          people={people}
           messages={messages}
           lastMessageRef={lastMessageRef}
+          showUserList={showUserList}
+          toggleUserList={toggleUserList}
+          closeUserList={closeUserList}
         />
       </Container>
     </Layout>
