@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 15%;
   border: 1px solid #E6E6E8;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-  z-index: 1;
+  z-index: 10;
 `;
 
 export const Select = styled.div`
@@ -27,5 +27,5 @@ export const Background = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.1);
-  z-index: 0;
+  z-index: 5;
 `;

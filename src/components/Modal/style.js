@@ -19,7 +19,7 @@ export const Content = styled.div`
   max-height: 70%;
   border-radius: 1rem;
   padding: 2rem;
-  z-index: 1;
+  z-index: 10;
   background: #FFFFFF;
 `;
 
@@ -87,5 +87,5 @@ export const Background = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 0;
+  z-index: 5;
 `;
