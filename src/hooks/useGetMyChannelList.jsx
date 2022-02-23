@@ -17,16 +17,17 @@ const useGetMyChannelList = () => {
   const moveChannel = useMoveChannel();
 
   const getChannelList = async () => {
-    /*
-    const res = await fetchApi.get(`/api/channels?email=${user.email}`);
+  
+    const res = await fetchApi.get(`/api/v1/auth/channel/user`);
     if (res.status === 200) {
       // 데이터 가져오기 성공 시
       const channels = await res.json();
-      setChannelList(channels);
+      console.log(channels.channel)
+      setChannelList(channels.channel);
       console.log('로그인 성공');
     }
-    */
-    setChannelList(channel_dummy);
+  
+    // setChannelList(channel_dummy);
   }
 
   useEffect(() => {
