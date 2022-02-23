@@ -32,12 +32,7 @@ const useGetChannelList = () => {
       const chs = channels.channel.filter((channel) => !myChannelIDList.includes(channel.channelId));
       setChannelList(chs);
       console.log('가입 가능한 채널 불러오기 성공');
-    }
-    
-    // const myChannelIDList = myChannelList.map((channel) => channel.channelId);
-    // const chs = channelList.filter((channel) => !myChannelIDList.includes(channel.channelId));
-    // setChannelList(chs);
-    
+    }    
   }
 
   useEffect(() => {
