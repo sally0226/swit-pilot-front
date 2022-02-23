@@ -10,10 +10,10 @@ const dateToKorean = (date) => {
   return `${dayOrNight} ${hour}:${minute}`;
 };
 
-const SenderInfo = ({ user_name, date }) => {
+const SenderInfo = ({ userName, date }) => {
   return (
     <Wrapper>
-      <NameSpan>{user_name}</NameSpan>
+      <NameSpan>{userName}</NameSpan>
       <DateSpan>{dateToKorean(date)}</DateSpan>
     </Wrapper>
   );

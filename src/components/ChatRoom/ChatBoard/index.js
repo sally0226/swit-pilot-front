@@ -8,7 +8,7 @@ const ChatBoard = ({ messages, lastMessageRef }) => {
     <Container>
       {
         messages.length !== 0 &&
-        messages.map(message => <Message key={message.createdAt} user_name={message.name} contents={message.contents} date={message.createdAt} />)
+        messages.map(message => <Message key={message.createdAt} userName={message.name} contents={message.contents} date={message.createdAt} />)
       }
       {
         messages.length === 0 &&

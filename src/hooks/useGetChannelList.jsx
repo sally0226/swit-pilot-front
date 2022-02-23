@@ -3,21 +3,6 @@ import { useRecoilValue } from 'recoil';
 import { channelListState } from '../stores/channel';
 import fetchApi from '../utils/fetch';
 
-const channel_dummy = [
-  { channelId: '1', channelName: 'Backend' },
-  { channelId: '2', channelName: 'Frontend' },
-  { channelId: '3', channelName: 'General' },
-  { channelId: '4', channelName: 'DevOps' },
-  { channelId: '5', channelName: 'Computer Science' },
-  { channelId: '6', channelName: 'Study' },
-  { channelId: '7', channelName: 'Dev Log' },
-  { channelId: '8', channelName: 'Blog' },
-  { channelId: '9', channelName: 'Huney Butter Tip' },
-  { channelId: '10', channelName: 'foo' },
-  { channelId: '11', channelName: 'bar' },
-  { channelId: '12', channelName: 'baz' },
-];
-
 const useGetChannelList = () => {
   const [channelList, setChannelList] = useState([]);
   const myChannelList = useRecoilValue(channelListState);

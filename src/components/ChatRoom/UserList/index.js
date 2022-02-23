@@ -16,7 +16,7 @@ const UserList = ({ closeUserList }) => {
       </Header>
       <Wrapper>
         {
-          userList.map((user) => <User key={user.id} user={user} />)
+          userList.map((user) => <User key={user.userEmail} user={user} />)
         }
       </Wrapper>
     </Container>
