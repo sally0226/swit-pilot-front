@@ -23,19 +23,21 @@ const useGetChannelList = () => {
   const myChannelList = useRecoilValue(channelListState);
 
   const getChannelList = async () => {
-    /*
-    const res = await fetchApi.get(`/api/channels?email=${user.email}`);
+    
+    const res = await fetchApi.get(`/api/v1/auth/channel/list`);
     if (res.status === 200) {
       // 데이터 가져오기 성공 시
       const channels = await res.json();
-      setChannelList(channels);
-      console.log('로그인 성공');
+      const myChannelIDList = myChannelList.map((channel) => channel.channelId);
+      const chs = channels.channel.filter((channel) => !myChannelIDList.includes(channel.channelId));
+      setChannelList(chs);
+      console.log('가입 가능한 채널 불러오기 성공');
     }
-    */
-
-    const myChannelIDList = myChannelList.map((channel) => channel.channelId);
-    const channels = channel_dummy.filter((channel) => !myChannelIDList.includes(channel.channelId));
-    setChannelList(channels);
+    
+    // const myChannelIDList = myChannelList.map((channel) => channel.channelId);
+    // const chs = channelList.filter((channel) => !myChannelIDList.includes(channel.channelId));
+    // setChannelList(chs);
+    
   }
 
   useEffect(() => {
