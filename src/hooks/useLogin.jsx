@@ -18,6 +18,7 @@ const useLogin = () => {
       // 메인 페이지로 redirect
       const data = await res.json();
       setUser(data.user);
+      console.log(data.user)
       localStorage.setItem("accessToken", data.accessToken)
       navigate('/main');
       console.log('로그인 성공');

@@ -5,12 +5,6 @@ import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 import useMoveChannel from './useMoveChannel';
 
-const channel_dummy = [
-  { channelId: '1', channelName: 'Backend', ownerEmail: '123@gmail.com' },
-  { channelId: '2', channelName: 'Frontend', ownerEmail: '123@gmail.com' },
-  { channelId: '3', channelName: 'General', ownerEmail: '123@gmail.com' },
-];
-
 const useGetMyChannelList = () => {
   const [channelList, setChannelList] = useRecoilState(channelListState);
   const user = useRecoilValue(userState);
@@ -26,8 +20,7 @@ const useGetMyChannelList = () => {
       setChannelList(channels.channel);
       console.log('로그인 성공');
     }
-  
-    // setChannelList(channel_dummy);
+
   }
 
   useEffect(() => {
@@ -36,7 +29,7 @@ const useGetMyChannelList = () => {
 
   useEffect(() => {
     if (channelList.length !== 0) {
-      moveChannel(channel_dummy[0].channelId);
+      moveChannel(channelList[0].channelId);
     }
   }, [channelList]);
 

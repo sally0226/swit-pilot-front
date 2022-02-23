@@ -4,7 +4,7 @@ import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 
 const chat_dummy = {
-  '1': [
+  '5': [
     { id: 1, name: 'Alpha', contents: '아이우에오\n'.repeat(100), createdAt: '2022-02-15 14:33:33'},
     { id: 2, name: 'Alpha', contents: '아이우에오', createdAt: '2022-02-15 14:34:33'},
     { id: 3, name: 'Alpha', contents: '아이우에오', createdAt: '2022-02-15 14:35:33'},
@@ -16,14 +16,14 @@ const chat_dummy = {
     { id: 9, name: 'Echo', contents: '아이우에오', createdAt: '2022-02-15 14:52:20'},
     { id: 10, name: 'Foxtrot', contents: '아이우에오', createdAt: '2022-02-15 14:59:30'},
   ],
-  '2': [
+  '6': [
     { id: 1, name: 'Hi', contents: '아이우에오이', createdAt: '2022-02-16 15:24:30'},
   ],
-  '3': []
+  '7': []
 };
 
 const people_dummy = {
-  '1': [
+  '5': [
     { id: '123@gmail.com', name: 'LeeMir' },
     { id: 'alpha@gmail.com', name: 'Alpha' },
     { id: 'bravo@gmail.com', name: 'Bravo' },
@@ -32,11 +32,11 @@ const people_dummy = {
     { id: 'echo@gmail.com', name: 'Echo' },
     { id: 'foxtrot@gmail.com', name: 'Foxtrot' },
   ],
-  '2': [
+  '6': [
     { id: '123@gmail.com', name: 'LeeMir' },
     { id: 'hi@gmail.com', name: 'Hi' },
   ],
-  '3': [
+  '7': [
     { id: '123@gmail.com', name: 'LeeMir' },
   ],
 };
