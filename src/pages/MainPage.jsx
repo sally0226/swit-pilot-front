@@ -9,7 +9,11 @@ import MainTemplate from '../templates/MainTemplate';
 
 const MainPage = () => {
   const lastMessageRef = useRef();
-  const scrollToBottom = () => lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+  const scrollToBottom = () => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   const myChannels = useGetMyChannelList();
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const messages = useRecoilValue(messageState);
