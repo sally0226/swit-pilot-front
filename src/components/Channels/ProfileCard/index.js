@@ -8,7 +8,7 @@ const ProfileCard = () => {
   const user = useRecoilValue(userState);
   return (
     <Wrapper>
-      <ProfileIcon user_name={user.userName} size={5} />
+      <ProfileIcon userName={user.userName} size={5} />
       <NameSpan>{user.userName}</NameSpan>
       <EmailSpan>{user.userEmail}</EmailSpan>
     </Wrapper>

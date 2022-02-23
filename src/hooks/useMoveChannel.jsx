@@ -50,22 +50,22 @@ const useMoveChannel = () => {
 
   const getChannelInfo = async (channelId) => {
     const temp = { ...channel };
-    /*
-    const res = await fetchApi.get(`/api/channel?channelId=${channelId}`);
+    
+    const res = await fetchApi.get(`/api/v1/auth/channel?channel_id=${channelId}`);
     if (res.status === 200) {
       const data = await res.json();
       // data에서 접속자 명단이랑 채널 정보 분리해서 recoil에 저장해야 함
-      // socketApi로 접속 후 메시지 리스트도 불러와야 함
+      // socketApi로 접속 후 메시지 리스트도 불러와야 
+      setChannel(data)
+      setChannelPeopleList(data.memberList)
     }
-    */
+  
     temp.channelId = channelId;
     temp.channelName = channelList.find(channel => channel.channelId === channelId).channelName;
     const messages = chat_dummy[`${channelId}`];
     const people = people_dummy[`${channelId}`];
 
-    setChannel(temp);
-    setMessageList(messages);
-    setChannelPeopleList(people);
+    // setMessageList(messages);
   }
 
   return (channelId) => {

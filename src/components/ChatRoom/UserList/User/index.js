@@ -7,11 +7,11 @@ import { Wrapper } from './style';
 const User = ({ user }) => {
   const currentChannel = useRecoilValue(currentChannelState);
   const ownerEmail = currentChannel.ownerEmail;
-  const isOwner = user.id === ownerEmail;
+  const isOwner = user.userEmail === ownerEmail;
   return (
     <Wrapper>
-      <ProfileIcon user_name={user.name} size={2}/>
-      {user.name}
+      <ProfileIcon userName={user.userName} size={2}/>
+      {user.userName}
       {isOwner && <img src='/img/crown.svg' alt='owner-icon' />}
     </Wrapper>
   );
