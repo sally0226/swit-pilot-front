@@ -30,11 +30,18 @@ const LoginPage = () => {
   useEffect(() => {
     if (getCookie('accessToken')) {
       localStorage.setItem('accessToken', getCookie('accessToken'));
-      navigate('/main')
+      navigate('/main');
     }
   }, []);
   return (
-    <LoginTemplate id={id} pw={pw} idHandler={idHandler} pwHandler={pwHandler} login={loginHandler} googleLogin={googleLogin} />
+    <LoginTemplate
+      id={id}
+      pw={pw}
+      idHandler={idHandler}
+      pwHandler={pwHandler}
+      login={loginHandler}
+      googleLogin={googleLogin}
+    />
   );
 };
 

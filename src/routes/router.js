@@ -8,7 +8,7 @@ import SignupPage from '../pages/SignupPage';
 const Router = () => {
   const checkLogin = useCheckLogin();
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem('accessToken')) {
       checkLogin();
     }
   }, []);

@@ -1,4 +1,4 @@
-import { emailRegExp } from "./regex";
+import { emailRegExp } from './regex';
 
 export const checkName = (name) => {
   if (name === '') {

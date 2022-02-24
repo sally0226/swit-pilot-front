@@ -14,7 +14,7 @@ const useGetMyChannelList = () => {
     if (res.status === 200) {
       // 데이터 가져오기 성공 시
       const channels = await res.json();
-      console.log(channels.channel)
+      console.log(channels.channel);
       setChannelList(channels.channel);
       console.log('내 채널 목록 가져오기 성공');
 
@@ -23,7 +23,7 @@ const useGetMyChannelList = () => {
   }
 
   useEffect(() => {
-    if (channelList.length !== 0 && currentChannelInfo.channelId == -1) {
+    if (channelList.length !== 0 && currentChannelInfo.channelId === -1) {
       moveChannel(channelList[0].channelId);
     }
   }, [channelList]);
