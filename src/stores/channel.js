@@ -7,7 +7,7 @@ export const channelListState = atom({
 
 export const currentChannelState = atom({
   key: 'currentChannelState',
-  default: { channelId: -1, ownerEmail: '123@gmail.com', channelName: '' }
+  default: { channelId: -1, ownerEmail: '', channelName: '' }
 });
 
 export const channelPeopleListState = atom({

@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { channelListState } from '../stores/channel';
-import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 import useMoveChannel from './useMoveChannel';
 
 const useGetMyChannelList = () => {
   const [channelList, setChannelList] = useRecoilState(channelListState);
-  const user = useRecoilValue(userState);
   const moveChannel = useMoveChannel();
 
   const getChannelList = async () => {
@@ -20,12 +18,8 @@ const useGetMyChannelList = () => {
       setChannelList(channels.channel);
       console.log('로그인 성공');
     }
-    // setChannelList(channel_dummy);
+    // setChannelList(channel_dummy)
   }
-
-  useEffect(() => {
-    getChannelList();
-  }, []);
 
   useEffect(() => {
     if (channelList.length !== 0) {

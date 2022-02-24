@@ -62,6 +62,7 @@ const useMoveChannel = () => {
   
     temp.channelId = channelId;
     temp.channelName = channelList.find(channel => channel.channelId === channelId).channelName;
+    temp.ownerEmail = channelList.find(channel => channel.channelId === channelId).ownerEmail;
     const messages = chat_dummy[`${channelId}`];
     const people = people_dummy[`${channelId}`];
 

@@ -13,11 +13,16 @@ const ModalPortal = ({
   const ref = useRef();
   const [mounted, setMounted] = useState(false);
 
+  const submitHandler = () => {
+    submit();
+    closePortal();
+  };
+
   useEffect(()=>{
     setMounted(true);
     if (document) {
-        const dom = document.getElementById('root-modal');
-        ref.current = dom;
+      const dom = document.getElementById('root-modal');
+      ref.current = dom;
     }
   }, []);
 
@@ -37,7 +42,7 @@ const ModalPortal = ({
             showSubmitBtn &&
             <ButtonContainer>
               <Button onClick={closePortal}>취소</Button>
-              <Button onClick={submit}>{submitBtnName}</Button>
+              <Button onClick={submitHandler}>{submitBtnName}</Button>
             </ButtonContainer>
           }
         </Content>
