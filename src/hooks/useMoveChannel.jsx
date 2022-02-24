@@ -19,7 +19,9 @@ const chat_dummy = {
   '2': [
     { id: 1, name: 'Hi', contents: '아이우에오이', createdAt: '2022-02-16 15:24:30'},
   ],
-  '3': []
+  '3': [],
+  '4': [],
+  '5': [],
 };
 
 const people_dummy = {
@@ -38,6 +40,12 @@ const people_dummy = {
   ],
   '3': [
     { id: '123@gmail.com', name: 'LeeMir' },
+  ],
+  '4': [
+
+  ],
+  '5': [
+
   ],
 };
 
@@ -60,9 +68,9 @@ const useMoveChannel = () => {
     */
     temp.channelId = channelId;
     temp.channelName = channelList.find(channel => channel.channelId === channelId).channelName;
+    temp.ownerEmail = channelList.find(channel => channel.channelId === channelId).ownerEmail;
     const messages = chat_dummy[`${channelId}`];
     const people = people_dummy[`${channelId}`];
-
     setChannel(temp);
     setMessageList(messages);
     setChannelPeopleList(people);

@@ -1,37 +1,33 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { channelListState } from '../stores/channel';
-import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
 import useMoveChannel from './useMoveChannel';
 
 const channel_dummy = [
-  { channelId: '1', channelName: 'Backend', ownerEmail: '123@gmail.com' },
+  { channelId: '1', channelName: 'Backend', ownerEmail: 'alpha@gmail.com' },
   { channelId: '2', channelName: 'Frontend', ownerEmail: '123@gmail.com' },
   { channelId: '3', channelName: 'General', ownerEmail: '123@gmail.com' },
 ];
 
 const useGetMyChannelList = () => {
   const [channelList, setChannelList] = useRecoilState(channelListState);
-  const user = useRecoilValue(userState);
   const moveChannel = useMoveChannel();
 
   const getChannelList = async () => {
     /*
-    const res = await fetchApi.get(`/api/channels?email=${user.email}`);
+    const res = await fetchApi.get(`/api/v1/auth/channel/user`);
     if (res.status === 200) {
       // 데이터 가져오기 성공 시
       const channels = await res.json();
-      setChannelList(channels);
-      console.log('로그인 성공');
+      console.log(channels.channel)
+      setChannelList(channels.channel);
     }
     */
-    setChannelList(channel_dummy);
+    if (channelList.length === 0) {
+      setChannelList(channel_dummy);
+    }
   }
-
-  useEffect(() => {
-    getChannelList();
-  }, []);
 
   useEffect(() => {
     if (channelList.length !== 0) {
@@ -39,7 +35,9 @@ const useGetMyChannelList = () => {
     }
   }, [channelList]);
 
-  return channelList;
+  return (() => {
+    getChannelList();
+  });
 };
 
 export default useGetMyChannelList;

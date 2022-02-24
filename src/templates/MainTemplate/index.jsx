@@ -5,7 +5,6 @@ import Header from '../../components/Header';
 import { Container, Layout } from './style';
 
 const MainTemplate = ({
-  myChannels,
   channel,
   messages,
   people,
@@ -20,7 +19,6 @@ const MainTemplate = ({
       <Header />
       <Container>
         <Channels
-          myChannels={myChannels}
           current={channel.channelId}
           modalController={modalController}
         />

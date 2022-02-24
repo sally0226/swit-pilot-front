@@ -3,11 +3,14 @@ import MyChannel from './MyChannel';
 import ChannelModal from './ChannelModal';
 import { Button, Container, Title, Wrapper } from './style';
 import ProfileCard from './ProfileCard';
+import { useRecoilValue } from 'recoil';
+import { channelListState } from '../../stores/channel';
 
-const Channels = ({ myChannels, current, modalController }) => {
+const Channels = ({ current, modalController }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const myChannels = useRecoilValue(channelListState);
   return (
     <Container>
       <ProfileCard />

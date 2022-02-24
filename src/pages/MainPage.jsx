@@ -3,6 +3,7 @@ import { useRecoilValue } from 'recoil';
 import CreateChannel from '../components/Channels/CreateChannel';
 import SearchChannel from '../components/Channels/SearchChannel';
 import ModalPortal from '../components/Modal';
+import useCreateChannel from '../hooks/useCreateChannel';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
@@ -14,11 +15,15 @@ const MainPage = () => {
       lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }
-  const myChannels = useGetMyChannelList();
+
+  const getMyChannelList = useGetMyChannelList();
+  const createChannel = useCreateChannel();
+
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const messages = useRecoilValue(messageState);
   const people = useRecoilValue(channelPeopleListState);
 
+  const [newChannelName, setNewChannelName] = useState('');
   const [showUserList, setShowUserList] = useState(false);
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
@@ -47,14 +52,25 @@ const MainPage = () => {
     setShowUserList(false);
   };
 
+  const newChannelNameHandler = (e) => {
+    setNewChannelName(e.target.value);
+  };
+
+  const createChannelSubmit = () => {
+    createChannel(newChannelName);
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [currentChannelInfo]);
 
+  useEffect(() => {
+    getMyChannelList();
+  }, []);
+
   return (
     <>
       <MainTemplate
-        myChannels={myChannels}
         channel={currentChannelInfo}
         messages={messages}
         people={people}
@@ -78,9 +94,13 @@ const MainPage = () => {
         <ModalPortal
           title='채널 생성'
           closePortal={modalController.closeCreateChannelModal}
+          submit={createChannelSubmit}
           showSubmitBtn={true}
         >
-          <CreateChannel />
+          <CreateChannel
+            newChannelName={newChannelName}
+            newChannelNameHandler={newChannelNameHandler}
+          />
         </ModalPortal>
       }
     </>
