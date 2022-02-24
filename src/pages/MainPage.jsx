@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import CreateChannel from '../components/Channels/CreateChannel';
 import SearchChannel from '../components/Channels/SearchChannel';
 import ModalPortal from '../components/Modal';
@@ -21,8 +21,7 @@ const MainPage = () => {
   const createChannel = useCreateChannel();
 
   const currentChannelInfo = useRecoilValue(currentChannelState);
-  const messages = useRecoilValue(messageState);
-  const setMessageList = useSetRecoilState(messageState);
+  const [messages, setMessageList] = useRecoilState(messageState);
   const people = useRecoilValue(channelPeopleListState);
 
   const [newChannelName, setNewChannelName] = useState('');
@@ -43,16 +42,46 @@ const MainPage = () => {
       });
       socket.on("init", (data) => {
         console.log(data);
-        setMessageList(data);
+        if (data) {
+          setMessageList(data);
+        }
       });
       socket.on("create-message", (data) => {
         console.log("create-message", data)
+        createdMessage(data);
+      });
+      socket.on("update-message", (data) => {
+        console.log("update-message", data)
+        updatedMessage(data);
+      });
+      socket.on("delete-message", (data) => {
+        console.log("delete-message", data)
+        deleteMessage(data);
       });
       return (() => {
+        setMessageList([]);
         socket.disconnect()
       })
     }
-  }, [currentChannelInfo])
+  }, [currentChannelInfo]);
+
+  const createdMessage = (message) => {
+    setMessageList(cur => [...cur, message])
+  }
+
+  const updatedMessage = (message) => {
+    const newMessages = messages.map((elem) => {
+      if (elem.messageId == message.messageId) {
+        return message;
+      }
+      return elem;
+    });
+    setMessageList(newMessages)
+  }
+
+  const deleteMessage = (message) => {
+    setMessageList(messages.filter((elem) => elem.messageId != message.messageId))
+  }
   const modalController = {
     openSearchChannelModal: () => {
       setShowSearchChannelModal(true);
