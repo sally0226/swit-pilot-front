@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import CreateChannel from '../components/Channels/CreateChannel';
 import SearchChannel from '../components/Channels/SearchChannel';
 import ModalPortal from '../components/Modal';
+import io from 'socket.io-client';
 import useCreateChannel from '../hooks/useCreateChannel';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
@@ -21,6 +22,7 @@ const MainPage = () => {
 
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const messages = useRecoilValue(messageState);
+  const setMessageList = useSetRecoilState(messageState);
   const people = useRecoilValue(channelPeopleListState);
 
   const [newChannelName, setNewChannelName] = useState('');
@@ -28,6 +30,29 @@ const MainPage = () => {
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
 
+  useEffect(() => {
+    const url = "http://localhost:8000"
+    console.log(currentChannelInfo.channelId)
+    if (currentChannelInfo.channelId != -1) {
+      const socket = io(url, {
+        query: {
+          channel_id: currentChannelInfo.channelId,
+          accessToken: localStorage.getItem("accessToken")
+        },
+        transports: ['websocket'],
+      });
+      socket.on("init", (data) => {
+        console.log(data);
+        setMessageList(data);
+      });
+      socket.on("create-message", (data) => {
+        console.log("create-message", data)
+      });
+      return (() => {
+        socket.disconnect()
+      })
+    }
+  }, [currentChannelInfo])
   const modalController = {
     openSearchChannelModal: () => {
       setShowSearchChannelModal(true);
