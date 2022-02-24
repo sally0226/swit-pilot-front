@@ -13,6 +13,7 @@ const ChatBoard = ({ messages, lastMessageRef }) => {
       {
         messages.length === 0 &&
         <NoMessage />
+
       }
       <div ref={lastMessageRef} />
     </Container>
