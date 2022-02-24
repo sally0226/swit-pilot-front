@@ -17,22 +17,13 @@ const useCreateChannel = () => {
     if (!channelName || channelName.length === 0) {
       alert('비어있는 이름의 채널은 생성할 수 없습니다!');
     }
-    /* 
-    const res = await fetchApi.post('/api/v1/auth/channel', { channelName });
-    if (res.status === 201) {
-      const data = await res.json();
-      getMyChannelList(); 채널 리스트 갱신
-      moveChannel(data.channelId); 채널로 이동
-    }
-    */
     
-    /* 아래는 지워도 됨 */
-    const newChannelId = (Number(channelList[channelList.length - 1].channelId) + 1).toString();
-    const newChannel = { channelId: newChannelId, channelName, ownerEmail: user.userEmail };
-    setChannelId(newChannelId);
-    setChannelList((cur) => [...cur, newChannel]);
-    getMyChannelList();
-    moveChannel(newChannelId);
+    const res = await fetchApi.post('/api/v1/auth/channel', { channelName });
+    if (res.status === 200) {
+      const data = await res.json();
+      getMyChannelList(); // 채널 리스트 갱신
+      moveChannel(data.channelId); // 채널로 이동
+    }
   }
 
   useEffect(() => {

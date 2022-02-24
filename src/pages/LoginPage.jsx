@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import useGoogleLogin from '../hooks/useGoogleLogin';
 import useLogin from '../hooks/useLogin';
 import LoginTemplate from '../templates/LoginTemplate';
