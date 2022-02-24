@@ -20,7 +20,7 @@ const useGetMyChannelList = () => {
       setChannelList(channels.channel);
       console.log('로그인 성공');
     }
-
+    // setChannelList(channel_dummy);
   }
 
   useEffect(() => {
@@ -33,7 +33,9 @@ const useGetMyChannelList = () => {
     }
   }, [channelList]);
 
-  return channelList;
+  return (() => {
+    getChannelList();
+  });
 };
 
 export default useGetMyChannelList;
