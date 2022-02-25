@@ -115,12 +115,33 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [currentChannelInfo]);
-
-  useEffect(() => {
     getMyChannelList();
   }, []);
+
+  useEffect(() => {
+    const url = 'http://localhost:8000';
+    console.log(currentChannelInfo.channelId);
+    if (currentChannelInfo.channelId !== -1) {
+      const socket = io(url, {
+        query: {
+          channel_id: currentChannelInfo.channelId,
+          accessToken: localStorage.getItem('accessToken')
+        },
+        transports: ['websocket'],
+      });
+      socket.on('init', (data) => {
+        console.log(data);
+        setMessageList(data);
+      });
+      socket.on('create-message', (data) => {
+        console.log('create-message', data);
+      });
+      scrollToBottom();
+      return (() => {
+        socket.disconnect();
+      })
+    }
+  }, [currentChannelInfo]);
 
   return (
     <>

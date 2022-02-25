@@ -18,8 +18,8 @@ const useMoveChannel = () => {
       const data = await res.json();
       // data에서 접속자 명단이랑 채널 정보 분리해서 recoil에 저장해야 함
       // socketApi로 접속 후 메시지 리스트도 불러와야 
-      setChannel(data)
-      setChannelPeopleList(data.memberList)
+      setChannel(data);
+      setChannelPeopleList(data.memberList);
     }
   
     temp.channelId = channelId;

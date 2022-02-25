@@ -29,7 +29,7 @@ const ModalPortal = ({
   if (ref.current && mounted) {
     return createPortal(
       <Container>
-        <Background className="modal-background" role="presentation" onClick={closePortal} />
+        <Background className='modal-background' role='presentation' onClick={closePortal} />
         <Content>
           <Header>
             <Title>{title}</Title>

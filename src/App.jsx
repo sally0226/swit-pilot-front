@@ -1,8 +1,10 @@
 import { RecoilRoot } from 'recoil';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResetStyle from './css/reset';
 import Router from './routes/router';
 
-function App() {
+const App = () => {
   return (
     <>
       <ResetStyle />
@@ -10,8 +12,9 @@ function App() {
         <Router />
         <div id='root-modal' />
       </RecoilRoot>
+      <ToastContainer />
     </>
   );
-}
+};
 
 export default App;
