@@ -9,6 +9,7 @@ const useCheckLogin = () => {
 	const logout = useLogout();
 	const checkLogin = async () => {
 		try {
+			/*
 			const res = await fetchApi.get('/api/v1/auth/user');
 			const data = await res.json();
 			console.log(data);
@@ -18,6 +19,7 @@ const useCheckLogin = () => {
 			if (res.status == 401) {
 				throw new Error();
 			}
+			*/
 		} catch (err) {
 			toast.error('다시 로그인해주세요');
 			logout();

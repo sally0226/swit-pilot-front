@@ -6,10 +6,10 @@ import MainPage from '../pages/MainPage';
 import SignupPage from '../pages/SignupPage';
 
 const Router = () => {
-  const checkLogin = useCheckLogin();
+  //const checkLogin = useCheckLogin();
   useEffect(() => {
     if (localStorage.getItem('accessToken')) {
-      checkLogin();
+      //checkLogin();
     }
   }, []);
   return (

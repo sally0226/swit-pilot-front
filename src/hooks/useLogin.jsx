@@ -9,7 +9,7 @@ const useLogin = () => {
 
   const login = async (userEmail, password) => {
     console.log(userEmail, password);
-
+    /*
     const res = await fetchApi.post('/api/v1/signin', { userEmail, password });
     if (res.status === 200) {
       // 로그인 성공 시
@@ -21,7 +21,7 @@ const useLogin = () => {
       navigate('/main');
       console.log('로그인 성공');
     }
-  
+    */
     navigate('/main');
   }
 
