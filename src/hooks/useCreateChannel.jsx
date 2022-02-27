@@ -26,7 +26,7 @@ const useCreateChannel = () => {
     }
     */
     
-    /* 아래는 지워도 됨 */
+    /* 아래는 로컬용 */
     const newChannelId = (Number(channelList[channelList.length - 1].channelId) + 1).toString();
     const newChannel = { channelId: newChannelId, channelName, ownerEmail: user.userEmail };
     setChannelId(newChannelId);
