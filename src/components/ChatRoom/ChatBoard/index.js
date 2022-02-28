@@ -11,12 +11,11 @@ const ChatBoard = ({ messages, lastMessageRef }) => {
     <Container>
       {
         messages.length !== 0 &&
-        messages.map(message => <Message key={message.createdAt} userName={memberList.find((elem)=> elem.userEmail === message.userEmail)?.userName} contents={message.contents} date={message.createdAt} />)
+        messages.map(message => <Message key={message.createdAt} userEmail={message.userEmail} userName={memberList.find((elem)=> elem.userEmail === message.userEmail)?.userName} contents={message.contents} date={message.createdAt} />)
       }
       {
         messages.length === 0 &&
         <NoMessage />
-
       }
       <div ref={lastMessageRef} />
     </Container>
