@@ -5,13 +5,21 @@ import Message from '../Message';
 import NoMessage from './NoMessage';
 import { Container } from './style';
 
-const ChatBoard = ({ messages, lastMessageRef }) => {
+const ChatBoard = ({ messages, lastMessageRef, openDeleteMessageModal }) => {
   const memberList = useRecoilValue(channelPeopleListState);
   return (
     <Container>
       {
         messages.length !== 0 &&
-        messages.map(message => <Message key={message.createdAt} userEmail={message.userEmail} userName={memberList.find((elem)=> elem.userEmail === message.userEmail)?.userName} contents={message.contents} date={message.createdAt} />)
+        messages.map(message =>
+          <Message
+            key={message.createdAt}
+            userEmail={message.userEmail}
+            userName={memberList.find((elem)=> elem.userEmail === message.userEmail)?.userName}
+            contents={message.contents}
+            date={message.createdAt}
+            openDeleteMessageModal={openDeleteMessageModal}
+          />)
       }
       {
         messages.length === 0 &&

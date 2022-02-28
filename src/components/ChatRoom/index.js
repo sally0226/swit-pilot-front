@@ -13,17 +13,30 @@ const ChatRoom = ({
   lastMessageRef,
   showUserList,
   toggleUserList,
-  closeUserList
+  closeUserList,
+  openExitChannelModal,
+  openUpdateChannelModal,
+  openDeleteMessageModal,
 }) => {
   return (
     <Container>
       {
         name &&
         <>
-          <ChatHeader name={name} people={people} toggleUserList={toggleUserList} />
+          <ChatHeader
+            name={name}
+            people={people}
+            toggleUserList={toggleUserList}
+            openExitChannelModal={openExitChannelModal}
+            openUpdateChannelModal={openUpdateChannelModal}
+          />
           <RoomContainer>
             <Wrapper>
-              <ChatBoard messages={messages} lastMessageRef={lastMessageRef} />
+              <ChatBoard
+                messages={messages}
+                lastMessageRef={lastMessageRef}
+                openDeleteMessageModal={openDeleteMessageModal}
+              />
               <ChatInput />
             </Wrapper>
             { showUserList && <UserList closeUserList={closeUserList} /> }

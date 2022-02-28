@@ -30,6 +30,9 @@ const MainTemplate = ({
           showUserList={showUserList}
           toggleUserList={toggleUserList}
           closeUserList={closeUserList}
+          openExitChannelModal={modalController.openExitChannelModal}
+          openUpdateChannelModal={modalController.openUpdateChannelModal}
+          openDeleteMessageModal={modalController.openDeleteMessageModal}
         />
       </Container>
     </Layout>

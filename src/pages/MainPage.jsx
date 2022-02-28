@@ -27,6 +27,9 @@ const MainPage = () => {
   const [showUserList, setShowUserList] = useState(false);
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
+  const [showExitChannelModal, setShowExitChannelModal] = useState(false);
+  const [showUpdateChannelModal, setShowUpdateChannelModal] = useState(false);
+  const [showDeleteMessageModal, setShowDeleteMessageModal] = useState(false);
 
   const updatedMessage = (message) => {
     const newMessages = messages.map((elem) => {
@@ -49,12 +52,29 @@ const MainPage = () => {
     openCreateChannelModal: () => {
       setShowCreateChannelModal(true);
     },
-    
+    openExitChannelModal: () => {
+      setShowExitChannelModal(true);
+    },
+    openUpdateChannelModal: () => {
+      setShowUpdateChannelModal(true);
+    },
+    openDeleteMessageModal: () => {
+      setShowDeleteMessageModal(true);
+    },
     closeSearchChannelModal: () => {
       setShowSearchChannelModal(false);
     },
     closeCreateChannelModal: () => {
       setShowCreateChannelModal(false);
+    },
+    closeExitChannelModal: () => {
+      setShowExitChannelModal(false);
+    },
+    closeUpdateChannelModal: () => {
+      setShowUpdateChannelModal(false);
+    },
+    closeDeleteMessageModal: () => {
+      setShowDeleteMessageModal(false);
     },
   }
 
@@ -115,6 +135,41 @@ const MainPage = () => {
             newChannelName={newChannelName}
             newChannelNameHandler={newChannelNameHandler}
           />
+        </ModalPortal>
+      }
+      {
+        showExitChannelModal &&
+        <ModalPortal
+          title='채널 나가기'
+          closePortal={modalController.closeExitChannelModal}
+          showSubmitBtn={true}
+          showSubmitBtnCenter={true}
+          submitBtnName='확인'
+        >
+          <span>나가시겠습니까?</span>
+        </ModalPortal>
+      }
+      {
+        showUpdateChannelModal &&
+        <ModalPortal
+          title='채널 이름 수정'
+          closePortal={modalController.closeUpdateChannelModal}
+          showSubmitBtn={true}
+          submitBtnName='수정'
+        >
+          <span>채널 이름 수정</span>
+        </ModalPortal>
+      }
+      {
+        showDeleteMessageModal &&
+        <ModalPortal
+          title='메시지 삭제'
+          closePortal={modalController.closeDeleteMessageModal}
+          showSubmitBtn={true}
+          showSubmitBtnCenter={true}
+          submitBtnName='삭제'
+        >
+          <span>삭제하시겠습니까?</span>
         </ModalPortal>
       }
     </>
