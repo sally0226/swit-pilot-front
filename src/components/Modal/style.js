@@ -61,7 +61,7 @@ export const CloseButton = styled.button`
 export const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: ${(props) => props.showSubmitBtnCenter ? 'center' : 'flex-end'};
   margin-top: 1rem;
   gap: 1rem;
 `;

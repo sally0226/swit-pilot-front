@@ -7,6 +7,7 @@ const ModalPortal = ({
   title,
   closePortal,
   showSubmitBtn = false,
+  showSubmitBtnCenter = false,
   submit,
   submitBtnName = '생성'
 }) => {
@@ -40,7 +41,7 @@ const ModalPortal = ({
           {children}
           {
             showSubmitBtn &&
-            <ButtonContainer>
+            <ButtonContainer showSubmitBtnCenter={showSubmitBtnCenter}>
               <Button onClick={closePortal}>취소</Button>
               <Button onClick={submitHandler}>{submitBtnName}</Button>
             </ButtonContainer>
