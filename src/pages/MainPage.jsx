@@ -28,10 +28,6 @@ const MainPage = () => {
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
 
-  const createdMessage = (message) => {
-    setMessageList(cur => [...cur, message]);
-  }
-
   const updatedMessage = (message) => {
     const newMessages = messages.map((elem) => {
       if (elem.messageId === message.messageId) {
@@ -84,7 +80,7 @@ const MainPage = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [currentChannelInfo]);
+  }, [currentChannelInfo, messages]);
 
   return (
     <>
