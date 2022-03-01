@@ -29,12 +29,6 @@ const useGetMyChannelList = () => {
     }
   }
 
-  useEffect(() => {
-    if (channelList.length !== 0) {
-      moveChannel(channel_dummy[0].channelId);
-    }
-  }, [channelList]);
-
   return (() => {
     getChannelList();
   });

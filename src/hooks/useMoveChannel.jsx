@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { channelListState, channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import userState from '../stores/user';
 import fetchApi from '../utils/fetch';
@@ -56,7 +56,16 @@ const useMoveChannel = () => {
   const setMessageList = useSetRecoilState(messageState);
   const setChannelPeopleList = useSetRecoilState(channelPeopleListState);
 
+  const resetChannelList = useResetRecoilState(channelListState);
+  const resetChannel = useResetRecoilState(currentChannelState);
+
   const getChannelInfo = async (channelId) => {
+    if (channelId === -1) { // 채널 연결 초기화 (소속된 채널 없게)
+      resetChannelList();
+      resetChannel();
+      return;
+    }
+
     const temp = { ...channel };
     
     /*
@@ -69,7 +78,7 @@ const useMoveChannel = () => {
       setChannelPeopleList(data.memberList);
     }
     */
-  
+
     temp.channelId = channelId;
     temp.channelName = channelList.find(channel => channel.channelId === channelId).channelName;
     temp.ownerEmail = channelList.find(channel => channel.channelId === channelId).ownerEmail;
