@@ -7,7 +7,7 @@ const useJoinChannel = () => {
   const moveChannel = useMoveChannel();
   const joinChannel = async (channelId) => {
     const res = await fetchApi.post(`/api/v1/auth/channel/user?channel_id=${channelId}`);
-    if (res.status == 200) {
+    if (res.status === 200) {
       getMyChannelList();
       moveChannel(channelId);
     }

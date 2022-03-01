@@ -17,7 +17,7 @@ const useGetMyChannelList = () => {
   }
 
   useEffect(() => {
-    if (channelList.length !== 0 && currentChannelInfo.channelId == -1) {
+    if (channelList.length !== 0 && currentChannelInfo.channelId === -1) {
       moveChannel(channelList[0].channelId);
     }
   }, [channelList]);
