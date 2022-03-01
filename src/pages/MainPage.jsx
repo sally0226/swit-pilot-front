@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import CreateChannel from '../components/Channels/CreateChannel';
 import SearchChannel from '../components/Channels/SearchChannel';
+import UpdateChannel from '../components/Channels/UpdateChannel';
 import ModalPortal from '../components/Modal';
+import WarningModal from '../components/WarningModal';
 import useCreateChannel from '../hooks/useCreateChannel';
+import useExitChannel from '../hooks/useExitChannel';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
+import useUpdateChannel from '../hooks/useUpdateChannel';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
 
@@ -18,12 +23,15 @@ const MainPage = () => {
 
   const getMyChannelList = useGetMyChannelList();
   const createChannel = useCreateChannel();
+  const exitChannel = useExitChannel();
+  const updateChannel = useUpdateChannel();
 
   const currentChannelInfo = useRecoilValue(currentChannelState);
-  const [messages, setMessageList] = useRecoilState(messageState);
   const people = useRecoilValue(channelPeopleListState);
+  const [messages, setMessageList] = useRecoilState(messageState);
 
   const [newChannelName, setNewChannelName] = useState('');
+  const [updateChannelName, setUpdateChannelName] = useState(currentChannelInfo.channelName);
   const [showUserList, setShowUserList] = useState(false);
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
@@ -38,7 +46,7 @@ const MainPage = () => {
       }
       return elem;
     });
-    setMessageList(newMessages)
+    setMessageList(newMessages);
   }
 
   const deleteMessage = (message) => {
@@ -56,6 +64,7 @@ const MainPage = () => {
       setShowExitChannelModal(true);
     },
     openUpdateChannelModal: () => {
+      setUpdateChannelName(currentChannelInfo.channelName);
       setShowUpdateChannelModal(true);
     },
     openDeleteMessageModal: () => {
@@ -90,8 +99,24 @@ const MainPage = () => {
     setNewChannelName(e.target.value);
   };
 
+  const updateChannelNameHandler = (e) => {
+    setUpdateChannelName(e.target.value);
+  };
+
   const createChannelSubmit = () => {
     createChannel(newChannelName);
+  };
+
+  const exitChannelSubmit = () => {
+    exitChannel();
+  };
+
+  const updateChannelSubmit = () => {
+    if (updateChannelName === '') {
+      toast.error('비어있는 이름으로 수정이 불가능합니다!');
+    } else {
+      updateChannel(updateChannelName);
+    }
   };
 
   useEffect(() => {
@@ -139,38 +164,39 @@ const MainPage = () => {
       }
       {
         showExitChannelModal &&
-        <ModalPortal
+        <WarningModal
           title='채널 나가기'
           closePortal={modalController.closeExitChannelModal}
+          submit={exitChannelSubmit}
           showSubmitBtn={true}
-          showSubmitBtnCenter={true}
           submitBtnName='확인'
-        >
-          <span>나가시겠습니까?</span>
-        </ModalPortal>
+          text='정말 나가시겠습니까?'
+        />
       }
       {
         showUpdateChannelModal &&
         <ModalPortal
           title='채널 이름 수정'
           closePortal={modalController.closeUpdateChannelModal}
+          submit={updateChannelSubmit}
           showSubmitBtn={true}
           submitBtnName='수정'
         >
-          <span>채널 이름 수정</span>
+          <UpdateChannel
+            updateChannelName={updateChannelName}
+            updateChannelNameHandler={updateChannelNameHandler}
+          />
         </ModalPortal>
       }
       {
         showDeleteMessageModal &&
-        <ModalPortal
+        <WarningModal
           title='메시지 삭제'
           closePortal={modalController.closeDeleteMessageModal}
           showSubmitBtn={true}
-          showSubmitBtnCenter={true}
           submitBtnName='삭제'
-        >
-          <span>삭제하시겠습니까?</span>
-        </ModalPortal>
+          text='삭제하시겠습니까?'
+        />
       }
     </>
   );
