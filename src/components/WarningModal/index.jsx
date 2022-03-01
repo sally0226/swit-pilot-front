@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Background, Button, ButtonContainer, CloseButton, Container, Content, Header, Title } from './style';
+import { Background, Button, ButtonContainer, CloseButton, Container, Content, Header, Message, Title } from './style';
 
-const ModalPortal = ({
-  children,
+const WarningModal = ({
   title,
   closePortal,
-  showSubmitBtn = false,
+  text,
   submit,
   submitBtnName = '생성'
 }) => {
@@ -37,14 +36,13 @@ const ModalPortal = ({
               <img src='/img/cancel.svg' alt='close-icon' />
             </CloseButton>
           </Header>
-          {children}
-          {
-            showSubmitBtn &&
-            <ButtonContainer>
-              <Button onClick={closePortal}>취소</Button>
-              <Button onClick={submitHandler}>{submitBtnName}</Button>
-            </ButtonContainer>
-          }
+          <Message>
+            {text}
+          </Message>
+          <ButtonContainer>
+            <Button onClick={closePortal}>취소</Button>
+            <Button onClick={submitHandler}>{submitBtnName}</Button>
+          </ButtonContainer>
         </Content>
       </Container>,
       ref.current
@@ -54,4 +52,4 @@ const ModalPortal = ({
   return null;
 }
 
-export default ModalPortal;
+export default WarningModal;

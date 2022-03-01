@@ -13,14 +13,17 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   flex-direction: column;
   width: 30%;
+  height: 10rem;
   max-height: 70%;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 2rem 2rem 3rem 2rem;
   z-index: 10;
   background: #FFFFFF;
+  overflow: hidden;
 `;
 
 export const Header = styled.div`
@@ -33,6 +36,13 @@ export const Header = styled.div`
 
 export const Title = styled.span`
   font-size: 1.5rem;
+`;
+
+export const Message = styled.span`
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
 `;
 
 export const CloseButton = styled.button`
@@ -59,11 +69,11 @@ export const CloseButton = styled.button`
 `;
 
 export const ButtonContainer = styled.div`
+  position: absolute;
+  bottom: 0;
   display: flex;
   width: 100%;
-  justify-content: flex-end;
-  margin-top: 1rem;
-  gap: 1rem;
+  justify-content: center;
 `;
 
 export const Button = styled.button`
@@ -73,8 +83,8 @@ export const Button = styled.button`
   border: 1px solid #E6E6E8;
   border-radius: 3px;
   background-color: #FFFFFF;
-  width: 5rem;
-  height: 2rem;
+  width: 100%;
+  height: 3rem;
   cursor: pointer;
 
   &:hover {
