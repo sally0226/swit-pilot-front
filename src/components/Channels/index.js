@@ -21,7 +21,16 @@ const Channels = ({ current, modalController }) => {
         </Button>
         { showModal && <ChannelModal closeModal={closeModal} modalController={modalController} /> }
       </Wrapper>
-      { myChannels.map((myChannel) => <MyChannel key={myChannel.channelId} id={myChannel.channelId} name={myChannel.channelName} isHere={myChannel.channelId === current} />) }
+      {
+        myChannels.map((myChannel) =>
+          <MyChannel
+            key={myChannel.channelId}
+            id={myChannel.channelId}
+            name={myChannel.channelName}
+            isHere={myChannel.channelId === current}
+          />
+        )
+      }
     </Container>
   );
 };
