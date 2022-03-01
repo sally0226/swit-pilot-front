@@ -9,6 +9,7 @@ import WarningModal from '../components/WarningModal';
 import useCreateChannel from '../hooks/useCreateChannel';
 import useExitChannel from '../hooks/useExitChannel';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
+import useJoinChannel from '../hooks/useJoinChannel';
 import useUpdateChannel from '../hooks/useUpdateChannel';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
@@ -25,6 +26,7 @@ const MainPage = () => {
   const createChannel = useCreateChannel();
   const exitChannel = useExitChannel();
   const updateChannel = useUpdateChannel();
+  const joinChannel = useJoinChannel();
 
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const people = useRecoilValue(channelPeopleListState);
@@ -119,6 +121,11 @@ const MainPage = () => {
     }
   };
 
+  const joinChannelHandler = (channelId) => {
+    joinChannel(channelId);
+    modalController.closeSearchChannelModal();
+  };
+
   useEffect(() => {
     getMyChannelList();
   }, []);
@@ -145,7 +152,7 @@ const MainPage = () => {
           title='채널 탐색'
           closePortal={modalController.closeSearchChannelModal}
         >
-          <SearchChannel />
+          <SearchChannel joinChannel={joinChannelHandler} />
         </ModalPortal>
       }
       {
