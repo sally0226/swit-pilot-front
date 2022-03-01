@@ -7,6 +7,7 @@ import UpdateChannel from '../components/Channels/UpdateChannel';
 import ModalPortal from '../components/Modal';
 import WarningModal from '../components/WarningModal';
 import useCreateChannel from '../hooks/useCreateChannel';
+import useDeleteMessage from '../hooks/useDeleteMessage';
 import useExitChannel from '../hooks/useExitChannel';
 import useGetMyChannelList from '../hooks/useGetMyChannelList';
 import useJoinChannel from '../hooks/useJoinChannel';
@@ -27,13 +28,15 @@ const MainPage = () => {
   const exitChannel = useExitChannel();
   const updateChannel = useUpdateChannel();
   const joinChannel = useJoinChannel();
+  const deleteMessage = useDeleteMessage();
 
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const people = useRecoilValue(channelPeopleListState);
-  const [messages, setMessageList] = useRecoilState(messageState);
+  const [messages, setMessages] = useRecoilState(messageState);
 
   const [newChannelName, setNewChannelName] = useState('');
   const [updateChannelName, setUpdateChannelName] = useState(currentChannelInfo.channelName);
+  const [deleteMessageId, setDeleteMessageId] = useState(0);
   const [showUserList, setShowUserList] = useState(false);
   const [showSearchChannelModal, setShowSearchChannelModal] = useState(false);
   const [showCreateChannelModal, setShowCreateChannelModal] = useState(false);
@@ -41,19 +44,24 @@ const MainPage = () => {
   const [showUpdateChannelModal, setShowUpdateChannelModal] = useState(false);
   const [showDeleteMessageModal, setShowDeleteMessageModal] = useState(false);
 
-  const updatedMessage = (message) => {
-    const newMessages = messages.map((elem) => {
-      if (elem.messageId === message.messageId) {
-        return message;
-      }
-      return elem;
-    });
-    setMessageList(newMessages);
-  }
-
-  const deleteMessage = (message) => {
-    setMessageList(messages.filter((elem) => elem.messageId !== message.messageId))
-  }
+  /*
+  // 소켓 이벤트에 따라서 호출
+  const patchMessages = (event, messageId, contents = '') => {
+    switch (event) {
+      case 'delete':
+        setMessages(cur => cur.filter((message => message.messageId !== messageId)));
+        break;
+      case 'update':
+        setMessages(cur => cur.map((message => {
+          if (message.messageId === messageId) {
+            return {...message, contents};
+          }
+          return message;
+        })));
+        break;
+    }
+  };
+  */
 
   const modalController = {
     openSearchChannelModal: () => {
@@ -69,8 +77,9 @@ const MainPage = () => {
       setUpdateChannelName(currentChannelInfo.channelName);
       setShowUpdateChannelModal(true);
     },
-    openDeleteMessageModal: () => {
+    openDeleteMessageModal: (messageId) => {
       setShowDeleteMessageModal(true);
+      setDeleteMessageId(messageId);
     },
     closeSearchChannelModal: () => {
       setShowSearchChannelModal(false);
@@ -124,6 +133,10 @@ const MainPage = () => {
   const joinChannelHandler = (channelId) => {
     joinChannel(channelId);
     modalController.closeSearchChannelModal();
+  };
+
+  const deleteMessageHandler = () => {
+    deleteMessage(deleteMessageId);
   };
 
   useEffect(() => {
@@ -200,6 +213,7 @@ const MainPage = () => {
         <WarningModal
           title='메시지 삭제'
           closePortal={modalController.closeDeleteMessageModal}
+          submit={deleteMessageHandler}
           showSubmitBtn={true}
           submitBtnName='삭제'
           text='삭제하시겠습니까?'

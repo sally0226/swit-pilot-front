@@ -5,7 +5,7 @@ import ProfileIcon from '../../ProfileIcon';
 import SenderInfo from './SenderInfo';
 import { ButtonContainer, Container, Contents, DeleteIcon, MessageHeader, UpdateIcon, Wrapper } from './style';
 
-const Message = ({ userEmail, userName, contents, date, openDeleteMessageModal }) => {
+const Message = ({ messageId, userEmail, userName, contents, date, openDeleteMessageModal }) => {
   const user = useRecoilValue(userState);
   return (
     <Container>
@@ -19,7 +19,7 @@ const Message = ({ userEmail, userName, contents, date, openDeleteMessageModal }
               <UpdateIcon>
                 <img src='/img/pencil.svg' alt='update-icon' />
               </UpdateIcon>
-              <DeleteIcon onClick={openDeleteMessageModal}>
+              <DeleteIcon onClick={() => openDeleteMessageModal(messageId)}>
                 <img src='/img/delete-bin.svg' alt='delete-icon' />
               </DeleteIcon>
             </ButtonContainer>

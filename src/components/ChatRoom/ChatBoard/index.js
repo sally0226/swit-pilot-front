@@ -13,13 +13,15 @@ const ChatBoard = ({ messages, lastMessageRef, openDeleteMessageModal }) => {
         messages.length !== 0 &&
         messages.map(message =>
           <Message
-            key={message.createdAt}
+            key={message.messageId}
+            messageId={message.messageId}
             userEmail={message.userEmail}
             userName={memberList.find((elem)=> elem.userEmail === message.userEmail)?.userName}
             contents={message.contents}
             date={message.createdAt}
             openDeleteMessageModal={openDeleteMessageModal}
-          />)
+          />
+        )
       }
       {
         messages.length === 0 &&
