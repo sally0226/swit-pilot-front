@@ -13,7 +13,7 @@ const dateToKorean = (date) => {
 const SenderInfo = ({ userName, date }) => {
   return (
     <Wrapper>
-      <NameSpan>{userName}</NameSpan>
+      <NameSpan>{userName ?? '(알 수 없음)'}</NameSpan>
       <DateSpan>{dateToKorean(date)}</DateSpan>
     </Wrapper>
   );

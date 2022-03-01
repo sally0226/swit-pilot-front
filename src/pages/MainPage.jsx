@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import io from 'socket.io-client';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import CreateChannel from '../components/Channels/CreateChannel';
 import SearchChannel from '../components/Channels/SearchChannel';
@@ -14,6 +15,8 @@ import useJoinChannel from '../hooks/useJoinChannel';
 import useUpdateChannel from '../hooks/useUpdateChannel';
 import { channelPeopleListState, currentChannelState, messageState } from '../stores/channel';
 import MainTemplate from '../templates/MainTemplate';
+import useMoveChannel from '../hooks/useMoveChannel';
+import userState from '../stores/user';
 
 const MainPage = () => {
   const lastMessageRef = useRef();
@@ -23,6 +26,7 @@ const MainPage = () => {
     }
   }
 
+  const moveChannel = useMoveChannel();
   const getMyChannelList = useGetMyChannelList();
   const createChannel = useCreateChannel();
   const exitChannel = useExitChannel();
@@ -30,6 +34,7 @@ const MainPage = () => {
   const joinChannel = useJoinChannel();
   const deleteMessage = useDeleteMessage();
 
+  const user = useRecoilValue(userState)
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const people = useRecoilValue(channelPeopleListState);
   const [messages, setMessages] = useRecoilState(messageState);
@@ -44,14 +49,55 @@ const MainPage = () => {
   const [showUpdateChannelModal, setShowUpdateChannelModal] = useState(false);
   const [showDeleteMessageModal, setShowDeleteMessageModal] = useState(false);
 
-  /*
+  useEffect(() => {
+    if (currentChannelInfo.channelId !== -1) {
+      const url = 'http://localhost:8000';
+      const socket = io(url, {
+        query: {
+          channel_id: currentChannelInfo.channelId,
+          access_token: localStorage.getItem('accessToken')
+        },
+        transports: ['websocket'],
+      });
+      socket.on('init', (data) => {
+        if (data) {
+          setMessages(data);
+        }
+      });
+      socket.on('create-message', (data) => {
+        setMessages(cur => [...cur, JSON.parse(data)]);
+      });
+      socket.on('update-message', (data) => {
+        const msg = JSON.parse(data);
+        patchMessages('update-message', msg.messageId, msg.contents);
+      });
+      socket.on('delete-message', (data) => {
+        const msg = JSON.parse(data);
+        patchMessages('delete-message', msg.messageId);
+      });
+      socket.on('update-channel', () => {
+        getMyChannelList();
+        moveChannel(currentChannelInfo.channelId);
+      });
+      socket.on('exit-channel', (email) => {
+        if (user.userEmail !== email) {
+          moveChannel(currentChannelInfo.channelId);
+        }
+      });
+      return (() => {
+        setMessages([]);
+        socket.disconnect();
+      });
+    }
+  }, [currentChannelInfo]);
+
   // 소켓 이벤트에 따라서 호출
   const patchMessages = (event, messageId, contents = '') => {
     switch (event) {
-      case 'delete':
+      case 'delete-message':
         setMessages(cur => cur.filter((message => message.messageId !== messageId)));
         break;
-      case 'update':
+      case 'update-message':
         setMessages(cur => cur.map((message => {
           if (message.messageId === messageId) {
             return {...message, contents};
@@ -61,7 +107,6 @@ const MainPage = () => {
         break;
     }
   };
-  */
 
   const modalController = {
     openSearchChannelModal: () => {

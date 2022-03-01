@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { channelListState, currentChannelState } from '../stores/channel';
 import fetchApi from '../utils/fetch';
@@ -9,9 +8,7 @@ const useExitChannel = () => {
   const [myChannelList, setMyChannelList] = useRecoilState(channelListState);
 
   const moveChannel = useMoveChannel();
-
-  const exit = () => {
-    /*
+  const exit = async () => {
     const res = await fetchApi.delete(`/api/v1/auth/channel/user?channel_id=${channel.channelId}`);
     if (res.status === 200) {
       if (myChannelList.length > 1) {
@@ -22,11 +19,9 @@ const useExitChannel = () => {
         }
         setMyChannelList(cur => cur.filter(elem => elem.channelId !== channel.channelId));
       } else {
-        moveChannel(-1); // -1로 이동: 초기화
+        moveChannel(-1);
       }
     }
-    */
-    
   };
 
   return (() => {
