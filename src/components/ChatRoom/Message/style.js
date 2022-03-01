@@ -57,3 +57,44 @@ export const Wrapper = styled.div`
 export const Contents = styled.pre`
   width: 100%;
 `;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+`;
+
+export const InputBtnContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+`;
+
+export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E6E6E8;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  width: 4rem;
+  height: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #EDEDED;
+  }
+`;
+
+export const Input = styled.textarea`
+  padding: 0.25rem 0.5rem;
+  width: calc(100% - 1rem);
+  resize: none;
+  border: 1px solid #E6E6E8;
+  font-size: 1rem;
+  &:focus-visible {
+    outline: none;
+  }
+`;
