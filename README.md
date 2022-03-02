@@ -77,8 +77,10 @@ yarn start
 
 ### Main - Modal 1
 
-<img width="49%" src="https://i.imgur.com/SLVMYug.png" />
-<img width="49%" src="https://i.imgur.com/KN9ZVgW.png" />
+<div>
+  <img width="49%" src="https://i.imgur.com/SLVMYug.png" />
+  <img width="49%" src="https://i.imgur.com/KN9ZVgW.png" />
+</div>
 
 ### Main - Modal 2
 
