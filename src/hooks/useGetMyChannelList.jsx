@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { channelListState, currentChannelState } from '../stores/channel';
 import fetchApi from '../utils/fetch';
 import useMoveChannel from './useMoveChannel';
 
 const useGetMyChannelList = () => {
-  const [channelList, setChannelList] = useRecoilState(channelListState);
+  const setChannelList = useSetRecoilState(channelListState);
   const moveChannel = useMoveChannel();
   const currentChannelInfo = useRecoilValue(currentChannelState);
   const getChannelList = async () => {
@@ -13,14 +13,11 @@ const useGetMyChannelList = () => {
     if (res.status === 200) {
       const channels = await res.json();
       setChannelList(channels.channel);
+      if (channels.channel.length !== 0 && currentChannelInfo.channelId === -1) {
+        moveChannel(channels.channel[0].channelId);
+      }
     }
   }
-
-  useEffect(() => {
-    if (channelList.length !== 0 && currentChannelInfo.channelId === -1) {
-      moveChannel(channelList[0].channelId);
-    }
-  }, [channelList]);
 
   return (() => {
     getChannelList();
